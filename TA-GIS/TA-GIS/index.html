@@ -1,7 +1,7 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,47 +11,43 @@
     <link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" rel="stylesheet" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
   </head>
 
-  <body style="background-color: rgba(100, 0, 0, 0.801);">
-      <div class="container py-4">
+  <body style="background-color: rgba(100, 0, 0, 0.801)">
+    <div class="container py-4">
       <header class="pb-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-          <span class="fs-4" style="color:white;">Sensor Suhu dan Kelembaban - Web GIS IoT</span>
+          <span class="fs-4" style="color: white">Sensor Suhu dan Kelembaban - Web GIS IoT</span>
         </a>
       </header>
       <div id="wiow">
-      <p style="font-weight:bold; color:white">Kelompok 13 SIG  | Sebaran Kost-an Daerah Bogor</p>
-      <table class="table table-sm" style="font-weight: normal; color:white;">
-        <thead>
-          <tr>
-            <th scope="col">Nama</th>
-            <th scope="col">NPM</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row" style="font-weight: normal;">Febryan Gerald El Baari Pyoh</th>
-            <td>065120164</td>
-          </tr>
-          <tr>
-            <th scope="row" style="font-weight: normal;">Sri Defi</th>
-            <td>065120157</td>
-          </tr>
-          <tr>
-            <th scope="row" style="font-weight: normal;">Natasya Aprilyanti Putri</th>
-            <td>065120160</td>
-          </tr>
-          <tr>
-            <th scope="row" style="font-weight: normal;">Algi Alfathan Berlianto</th>
-            <td>065120159</td>
-          </tr>
-        </tbody>
-      </table>
+        <p style="font-weight: bold; color: white">Kelompok 13 SIG | Sebaran Kost-an Daerah Bogor</p>
+        <table class="table table-sm" style="font-weight: normal; color: white">
+          <thead>
+            <tr>
+              <th scope="col">Nama</th>
+              <th scope="col">NPM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" style="font-weight: normal">Febryan Gerald El Baari Pyoh</th>
+              <td>065120164</td>
+            </tr>
+            <tr>
+              <th scope="row" style="font-weight: normal">Sri Defi</th>
+              <td>065120157</td>
+            </tr>
+            <tr>
+              <th scope="row" style="font-weight: normal">Natasya Aprilyanti Putri</th>
+              <td>065120160</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div id="map" style="height: 600px"></div>
       <div class="m-2">
-        <table class="table table-striped table-striped table-bordered" id="sensor" style="color:white;">
-          <thead style="color:black;">
-            <tr align="center" style="color:black;">
+        <table class="table table-striped table-striped table-bordered" id="sensor" style="color: white">
+          <thead style="color: black">
+            <tr align="center" style="color: black">
               <th>Lokasi</th>
               <th>Kelas</th>
               <th>Suhu</th>
@@ -75,15 +71,15 @@
 
       // Your web app's Firebase configuration
       const firebaseConfig = {
-        apiKey: "AIzaSyChPuNNGmNk1z_QMNQqv8hOkqPLueSiY7A",
-        authDomain: "projectgis-5dab3.firebaseapp.com",
-        databaseURL: "https://projectgis-5dab3-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "projectgis-5dab3",
-        storageBucket: "projectgis-5dab3.appspot.com",
-        messagingSenderId: "799081251392",
-        appId: "1:799081251392:web:c630afd97a2272f91e15a5",
-        measurementId: "G-7Z7REF3XQW"
-      };  
+        apiKey: 'AIzaSyChPuNNGmNk1z_QMNQqv8hOkqPLueSiY7A',
+        authDomain: 'projectgis-5dab3.firebaseapp.com',
+        databaseURL: 'https://projectgis-5dab3-default-rtdb.asia-southeast1.firebasedatabase.app',
+        projectId: 'projectgis-5dab3',
+        storageBucket: 'projectgis-5dab3.appspot.com',
+        messagingSenderId: '799081251392',
+        appId: '1:799081251392:web:c630afd97a2272f91e15a5',
+        measurementId: 'G-7Z7REF3XQW',
+      };
 
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
@@ -114,7 +110,7 @@
           .bindPopup(`<b>${data.nama} - ${data.kelas}</b><br>Suhu: ${data.suhu}<br>Kelembaban: ${data.kelembaban}<br>Terakhir Diperbaharui:<br>${data.diperbaharui}`);
       }
 
-      function addToTable(data) { 
+      function addToTable(data) {
         const findRow = document.querySelector(`tr[nama="${data.nama}"]`);
         const row = findRow ?? document.createElement('tr');
         row.setAttribute('nama', data.nama);
@@ -133,7 +129,7 @@
           const tbody = table.querySelector('tbody');
           tbody.appendChild(row);
         }
-      } 
+      }
 
       onValue(sensorRef, (snapshot) => {
         if (!snapshot.exists()) return;
